@@ -1,4 +1,4 @@
-name: Build & Release Theme
+name: Build & Release Plugin
 
 on:
   workflow_dispatch:
@@ -19,7 +19,7 @@ jobs:
       - name: Extract version from admin-theme-switcher.php
         id: version
         run: |
-          VERSION=$(grep -i "^Version:" admin-theme-switcher.php | awk '{print $2}')
+          VERSION=$(grep -i "Version:" admin-theme-switcher.php | head -1 | awk '{print $NF}')
           if [ -z "$VERSION" ]; then
             echo "Version not found in admin-theme-switcher.php"
             exit 1
@@ -29,7 +29,7 @@ jobs:
       - name: Set up Node (if needed)
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
         if: ${{ hashFiles('package.json') != '' }}
 
       - name: Install dependencies
@@ -40,7 +40,7 @@ jobs:
         run: npm run build
         if: ${{ hashFiles('package.json') != '' }}
 
-      - name: Create theme directory
+      - name: Create plugin directory
         run: |
           mkdir -p build/admin-theme-switcher
           rsync -av --exclude-from=.distignore ./ build/admin-theme-switcher/
