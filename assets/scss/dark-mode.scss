@@ -1,0 +1,121 @@
+$dark-color-1: #1e1e1e;
+$dark-color-2: #1d2327;
+$dark-color-3: #2a2a2a;
+$dark-color-4: #3a3a3a;
+$dark-color-5: #555;
+$light-color-1: #e0e0e0;
+
+body.ats-dark {
+  background: $dark-color-1;
+
+  #wpadminbar,
+  #wpadminbar .ab-item,
+  #wpadminbar a.ab-item {
+    background: $dark-color-2;
+    color: $light-color-1;
+  }
+
+  #adminmenu,
+  #adminmenuback,
+  #adminmenuwrap {
+    background: $dark-color-2;
+  }
+
+  #adminmenu a {
+    color: $light-color-1;
+  }
+
+  #adminmenu .wp-submenu {
+    background: $dark-color-2;
+  }
+
+  #wpcontent,
+  #wpbody-content,
+  .wrap {
+    background: $dark-color-1;
+    color: $light-color-1;
+  }
+
+  #wpbody-content {
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    label,
+    th,
+    td {
+      color: $light-color-1;
+    }
+
+    a {
+      color: #66b3ff;
+    }
+  }
+
+  .postbox,
+  .stuffbox {
+    background: $dark-color-3;
+    border-color: $dark-color-4;
+  }
+
+  .postbox .hndle,
+  .postbox h2.hndle,
+  .postbox-header {
+    background: $dark-color-3;
+    color: $light-color-1;
+    border-color: $dark-color-4;
+  }
+
+  .button,
+  .button-secondary {
+    background: $dark-color-4;
+    border-color: $dark-color-5;
+    color: $light-color-1;
+  }
+
+  .button-primary {
+    background: #2271b1;
+    border-color: #2271b1;
+    color: #fff;
+  }
+
+  input[type="text"],
+  input[type="search"],
+  input[type="email"],
+  input[type="url"],
+  input[type="password"],
+  input[type="number"],
+  textarea,
+  select {
+    background: $dark-color-3;
+    border-color: $dark-color-5;
+    color: $light-color-1;
+  }
+
+  .wp-list-table {
+    background: $dark-color-3;
+    color: $light-color-1;
+  }
+
+  .wp-list-table th,
+  .wp-list-table td {
+    border-color: $dark-color-4;
+  }
+
+  .wp-list-table tr:nth-child(odd) {
+    background: #262626;
+  }
+
+  .wp-list-table tr:hover {
+    background: #333;
+  }
+
+  .notice,
+  .updated,
+  .error {
+    background: $dark-color-3;
+    color: $light-color-1;
+    border-left-color: $dark-color-5;
+  }
+}

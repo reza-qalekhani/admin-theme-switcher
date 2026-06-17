@@ -1,0 +1,73 @@
+$families: vazirmatn, iransansx, iranyekan;
+$weights: normal, bold;
+
+@each $family in $families {
+  @each $weight in $weights {
+    @font-face {
+      font-family: "#{$family}";
+      src: url("../fonts/#{$family}-#{$weight}.woff2") format("woff2");
+      font-style: normal;
+      font-weight: $weight;
+      font-display: swap;
+    }
+  }
+}
+
+@each $family in $families {
+  body.ats-font-#{$family} {
+    #wpcontent,
+    #adminmenu,
+    #wpadminbar,
+    .wrap,
+    :is(h1, h2, h3, h4, h5, h6),
+    &.rtl,
+    &.rtl .press-this a.wp-switch-editor,
+    &.rtl #wpadminbar *,
+    &.block-editor-iframe__body.editor-styles-wrapper,
+    &.rtl .media-frame,
+    &.rtl .media-frame .search,
+    &.rtl .media-frame input[type="email"],
+    &.rtl .media-frame input[type="number"],
+    &.rtl .media-frame input[type="password"],
+    &.rtl .media-frame input[type="search"],
+    &.rtl .media-frame input[type="tel"],
+    &.rtl .media-frame input[type="text"],
+    &.rtl .media-frame input[type="url"],
+    &.rtl .media-frame select,
+    &.rtl .media-frame textarea,
+    &.rtl .media-modal,
+    .usb-panel-elms-header,
+    .usb-panel-header,
+    .usb-panel-footer,
+    .usof-tabs-list,
+    .usb-panel-elms-item,
+    .nav-tab-wrapper a,
+    .block-editor-tabbed-sidebar__tab,
+    .components-base-control__help,
+    .components-base-control__label,
+    .components-checkbox-control__label,
+    .components-select-control__input,
+    .components-input-control__input,
+    .components-menu-item__info,
+    .components-menu-item__item,
+    .components-menu-group__label,
+    .components-toggle-control__label,
+    .preferences__tabs-tab,
+    .editor-post-card-panel__title-name,
+    .block-editor-warning__contents,
+    .block-editor-warning__message,
+    .block-editor-warning__actions,
+    .blocks-shortcode__textarea,
+    .components-placeholder__label,
+    .components-placeholder__instructions,
+    .components-button,
+    .components-notice__content,
+    .components-notice__actions,
+    .components-notices__snackbar,
+    .css-1xbmaa0 {
+      font-family:
+        #{$family},
+        sans-serif;
+    }
+  }
+}
