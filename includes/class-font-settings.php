@@ -8,24 +8,27 @@ class ATS_Font_Settings {
 
   const OPTION_KEY = 'ats_font_family';
 
-  const FONT_LABELS = array(
-    'default' => 'Default',
-    'vazirmatn'   => 'Vazirmatn',
-    'iransansx'   => 'IranSansX',
-    'iranyekan'   => 'IranYekan',
-  );
+  public static function get_font_labels() {
+    return array(
+      'default'   => __('Default', 'admin-theme-switcher'),
+      'vazirmatn' => __('Vazirmatn', 'admin-theme-switcher'),
+      'iransansx' => __('IranSansX', 'admin-theme-switcher'),
+      'iranyekan' => __('IranYekan', 'admin-theme-switcher'),
+    );
+  }
 
   public static function init() {
     add_action('admin_menu', array(__CLASS__, 'add_settings_page'));
     add_action('admin_init', array(__CLASS__, 'register_settings'));
     add_filter('admin_body_class', array(__CLASS__, 'filter_admin_body_class'));
     add_action('admin_enqueue_scripts', array(__CLASS__, 'enqueue_assets'));
+    add_action('enqueue_block_assets', array(__CLASS__, 'enqueue_iframe_assets'));
   }
 
   public static function add_settings_page() {
     add_options_page(
-      'Admin Appearance',
-      'Admin Appearance',
+      __('Admin Appearance', 'admin-theme-switcher'),
+      __('Admin Appearance', 'admin-theme-switcher'),
       'manage_options',
       'admin-theme-switcher',
       array(__CLASS__, 'render_settings_page')
@@ -45,7 +48,7 @@ class ATS_Font_Settings {
   }
 
   public static function sanitize_font_choice($value) {
-    if (! array_key_exists($value, self::FONT_LABELS)) {
+    if (! array_key_exists($value, self::get_font_labels())) {
       return 'default';
     }
 
@@ -60,14 +63,14 @@ class ATS_Font_Settings {
     $current = get_option(self::OPTION_KEY, 'default');
 ?>
     <div class="wrap">
-      <h1>Admin Appearance</h1>
+      <h1><?php echo esc_html__('Admin Appearance', 'admin-theme-switcher'); ?></h1>
       <form method="post" action="options.php">
         <?php settings_fields('ats_font_settings_group'); ?>
         <table class="form-table">
           <tr>
-            <th scope="row">Admin Font Family</th>
+            <th scope="row"><?php echo esc_html__('Admin Font Family', 'admin-theme-switcher'); ?></th>
             <td>
-              <?php foreach (self::FONT_LABELS as $value => $label) : ?>
+              <?php foreach (self::get_font_labels() as $value => $label) : ?>
                 <label style="display:block;margin-bottom:6px;">
                   <input
                     type="radio"
@@ -89,7 +92,7 @@ class ATS_Font_Settings {
   public static function filter_admin_body_class($classes) {
     $current = get_option(self::OPTION_KEY, 'default');
 
-    if ('default' !== $current && array_key_exists($current, self::FONT_LABELS)) {
+    if ('default' !== $current && array_key_exists($current, self::get_font_labels())) {
       $classes .= ' ats-font-' . sanitize_html_class($current) . ' ';
     }
 
@@ -97,6 +100,19 @@ class ATS_Font_Settings {
   }
 
   public static function enqueue_assets($hook) {
+    wp_enqueue_style(
+      'ats-admin-fonts',
+      ATS_PLUGIN_URL . 'assets/css/admin-fonts.css',
+      array(),
+      ATS_VERSION
+    );
+  }
+
+  public static function enqueue_iframe_assets() {
+    if (! is_admin()) {
+      return;
+    }
+
     wp_enqueue_style(
       'ats-admin-fonts',
       ATS_PLUGIN_URL . 'assets/css/admin-fonts.css',

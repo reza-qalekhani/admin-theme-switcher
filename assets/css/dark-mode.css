@@ -1,38 +1,29 @@
-/* Admin Theme Switcher - Dark Mode */
-
 body.ats-dark {
-	background: #1e1e1e;
+  background: #1e1e1e;
 }
-
-/* Admin bar and side menu - force dark regardless of the user's chosen WP color scheme */
 body.ats-dark #wpadminbar,
 body.ats-dark #wpadminbar .ab-item,
 body.ats-dark #wpadminbar a.ab-item {
-	background: #1d2327;
-	color: #e0e0e0;
+  background: #1d2327;
+  color: #e0e0e0;
 }
-
 body.ats-dark #adminmenu,
 body.ats-dark #adminmenuback,
 body.ats-dark #adminmenuwrap {
-	background: #1d2327;
+  background: #1d2327;
 }
-
 body.ats-dark #adminmenu a {
-	color: #e0e0e0;
+  color: #e0e0e0;
 }
-
 body.ats-dark #adminmenu .wp-submenu {
-	background: #1d2327;
+  background: #1d2327;
 }
-
 body.ats-dark #wpcontent,
 body.ats-dark #wpbody-content,
 body.ats-dark .wrap {
-	background: #1e1e1e;
-	color: #e0e0e0;
+  background: #1e1e1e;
+  color: #e0e0e0;
 }
-
 body.ats-dark #wpbody-content h1,
 body.ats-dark #wpbody-content h2,
 body.ats-dark #wpbody-content h3,
@@ -41,81 +32,115 @@ body.ats-dark #wpbody-content p,
 body.ats-dark #wpbody-content label,
 body.ats-dark #wpbody-content th,
 body.ats-dark #wpbody-content td {
-	color: #e0e0e0;
+  color: #e0e0e0;
 }
-
 body.ats-dark #wpbody-content a {
-	color: #66b3ff;
+  color: #66b3ff;
 }
-
-/* Postboxes / cards / meta boxes */
 body.ats-dark .postbox,
 body.ats-dark .stuffbox {
-	background: #2a2a2a;
-	border-color: #3a3a3a;
+  background: #2a2a2a;
+  border-color: #3a3a3a;
 }
-
 body.ats-dark .postbox .hndle,
 body.ats-dark .postbox h2.hndle,
 body.ats-dark .postbox-header {
-	background: #2a2a2a;
-	color: #e0e0e0;
-	border-color: #3a3a3a;
+  background: #2a2a2a;
+  color: #e0e0e0;
+  border-color: #3a3a3a;
 }
-
-/* Buttons */
 body.ats-dark .button,
 body.ats-dark .button-secondary {
-	background: #3a3a3a;
-	border-color: #555;
-	color: #e0e0e0;
+  background: #3a3a3a;
+  border-color: #555;
+  color: #e0e0e0;
 }
-
 body.ats-dark .button-primary {
-	background: #2271b1;
-	border-color: #2271b1;
-	color: #fff;
+  background: #2271b1;
+  border-color: #2271b1;
+  color: #fff;
 }
-
-/* Form fields */
-body.ats-dark input[type="text"],
-body.ats-dark input[type="search"],
-body.ats-dark input[type="email"],
-body.ats-dark input[type="url"],
-body.ats-dark input[type="password"],
-body.ats-dark input[type="number"],
+body.ats-dark input[type=text],
+body.ats-dark input[type=search],
+body.ats-dark input[type=email],
+body.ats-dark input[type=url],
+body.ats-dark input[type=password],
+body.ats-dark input[type=number],
 body.ats-dark textarea,
 body.ats-dark select {
-	background: #2a2a2a;
-	border-color: #555;
-	color: #e0e0e0;
+  background: #2a2a2a;
+  border-color: #555;
+  color: #e0e0e0;
 }
-
-/* Tables */
 body.ats-dark .wp-list-table {
-	background: #2a2a2a;
-	color: #e0e0e0;
+  background: #2a2a2a;
+  color: #e0e0e0;
 }
-
 body.ats-dark .wp-list-table th,
 body.ats-dark .wp-list-table td {
-	border-color: #3a3a3a;
+  border-color: #3a3a3a;
 }
-
 body.ats-dark .wp-list-table tr:nth-child(odd) {
-	background: #262626;
+  background: #262626;
 }
-
 body.ats-dark .wp-list-table tr:hover {
-	background: #333;
+  background: #333;
 }
-
-/* Notices */
 body.ats-dark .notice,
 body.ats-dark .updated,
 body.ats-dark .error {
-	background: #2a2a2a;
-	color: #e0e0e0;
-	border-left-color: #555;
+  background: #2a2a2a;
+  color: #e0e0e0;
+  border-left-color: #555;
+}
+body.ats-dark.block-editor-iframe__body {
+  background: #1e1e1e;
+  color: #e0e0e0;
+}
+body.ats-dark.block-editor-iframe__body a {
+  color: #66b3ff;
+}
+body.ats-dark.block-editor-iframe__body :is(h1, h2, h3, h4, h5, h6) {
+  color: #e0e0e0;
+}
+body.ats-dark.block-editor-iframe__body code,
+body.ats-dark.block-editor-iframe__body pre {
+  background: #2a2a2a;
+  color: #e0e0e0;
+}
+body.ats-dark .interface-interface-skeleton,
+body.ats-dark .interface-interface-skeleton__header,
+body.ats-dark .interface-interface-skeleton__sidebar,
+body.ats-dark .editor-header,
+body.ats-dark .edit-post-header,
+body.ats-dark .editor-sidebar,
+body.ats-dark .block-editor-block-inspector,
+body.ats-dark .components-panel,
+body.ats-dark .components-panel__body,
+body.ats-dark .block-editor-inserter__menu,
+body.ats-dark .block-editor-block-types-list {
+  background: #1e1e1e;
+  color: #e0e0e0;
+  border-color: #3a3a3a;
+}
+body.ats-dark .components-button {
+  color: #e0e0e0;
+}
+body.ats-dark .components-text-control__input,
+body.ats-dark .components-select-control__input,
+body.ats-dark .components-input-control__input,
+body.ats-dark .components-search-control__input,
+body.ats-dark .components-textarea-control__input {
+  background: #2a2a2a;
+  border-color: #555;
+  color: #e0e0e0;
+}
+body.ats-dark .components-popover__content,
+body.ats-dark .components-dropdown-menu__menu,
+body.ats-dark .components-modal__frame {
+  background: #2a2a2a;
+  color: #e0e0e0;
+  border-color: #3a3a3a;
 }
 
+/*# sourceMappingURL=dark-mode.css.map */

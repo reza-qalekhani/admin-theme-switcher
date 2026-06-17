@@ -118,4 +118,61 @@ body.ats-dark {
     color: $light-color-1;
     border-left-color: $dark-color-5;
   }
+
+  &.block-editor-iframe__body {
+    background: $dark-color-1;
+    color: $light-color-1;
+
+    a {
+      color: #66b3ff;
+    }
+
+    :is(h1, h2, h3, h4, h5, h6) {
+      color: $light-color-1;
+    }
+
+    code,
+    pre {
+      background: $dark-color-3;
+      color: $light-color-1;
+    }
+  }
+
+  .interface-interface-skeleton,
+  .interface-interface-skeleton__header,
+  .interface-interface-skeleton__sidebar,
+  .editor-header,
+  .edit-post-header,
+  .editor-sidebar,
+  .block-editor-block-inspector,
+  .components-panel,
+  .components-panel__body,
+  .block-editor-inserter__menu,
+  .block-editor-block-types-list {
+    background: $dark-color-1;
+    color: $light-color-1;
+    border-color: $dark-color-4;
+  }
+
+  .components-button {
+    color: $light-color-1;
+  }
+
+  .components-text-control__input,
+  .components-select-control__input,
+  .components-input-control__input,
+  .components-search-control__input,
+  .components-textarea-control__input {
+    background: $dark-color-3;
+    border-color: $dark-color-5;
+    color: $light-color-1;
+  }
+
+  .components-popover__content,
+  .components-dropdown-menu__menu,
+  .components-modal__frame {
+    background: $dark-color-3;
+    color: $light-color-1;
+    border-color: $dark-color-4;
+  }
 }

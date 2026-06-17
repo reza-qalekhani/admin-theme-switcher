@@ -13,6 +13,7 @@ class ATS_Dark_Mode {
     add_filter('admin_body_class', array(__CLASS__, 'filter_admin_body_class'));
     add_action('admin_bar_menu', array(__CLASS__, 'add_toolbar_button'), 100);
     add_action('admin_enqueue_scripts', array(__CLASS__, 'enqueue_assets'));
+    add_action('enqueue_block_assets', array(__CLASS__, 'enqueue_iframe_assets'));
     add_action('wp_ajax_ats_toggle_mode', array(__CLASS__, 'ajax_toggle_mode'));
   }
 
@@ -42,7 +43,7 @@ class ATS_Dark_Mode {
     $wp_admin_bar->add_node(
       array(
         'id'    => 'ats-dark-mode-toggle',
-        'title' => $is_dark ? '☀️ Light Mode' : '🌙 Dark Mode',
+        'title' => $is_dark ? __('☀️ Light Mode', 'admin-theme-switcher') : __('🌙 Dark Mode', 'admin-theme-switcher'),
         'href'  => '#',
       )
     );
@@ -60,6 +61,22 @@ class ATS_Dark_Mode {
     update_user_meta(get_current_user_id(), self::META_KEY, $dark_mode);
 
     wp_send_json_success(array('dark_mode' => $dark_mode));
+  }
+
+  // Runs in addition to enqueue_assets(): WordPress collects styles enqueued
+  // here separately to inject into the block editor's iframe canvas. This
+  // hook also fires on the public front end, so it's guarded to admin only.
+  public static function enqueue_iframe_assets() {
+    if (! is_admin()) {
+      return;
+    }
+
+    wp_enqueue_style(
+      'ats-dark-mode',
+      ATS_PLUGIN_URL . 'assets/css/dark-mode.css',
+      array(),
+      ATS_VERSION
+    );
   }
 
   public static function enqueue_assets($hook) {
@@ -82,7 +99,9 @@ class ATS_Dark_Mode {
       'ats-dark-mode-toggle',
       'atsDarkMode',
       array(
-        'nonce' => wp_create_nonce(self::NONCE_ACTION),
+        'nonce'      => wp_create_nonce(self::NONCE_ACTION),
+        'lightLabel' => __('☀️ Light Mode', 'admin-theme-switcher'),
+        'darkLabel'  => __('🌙 Dark Mode', 'admin-theme-switcher'),
       )
     );
   }
