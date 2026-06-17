@@ -11,6 +11,7 @@ class ATS_Dark_Mode {
 
 	public static function init() {
 		add_filter( 'admin_body_class', array( __CLASS__, 'filter_admin_body_class' ) );
+		add_action( 'admin_bar_menu', array( __CLASS__, 'add_toolbar_button' ), 100 );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_assets' ) );
 	}
 
@@ -30,12 +31,36 @@ class ATS_Dark_Mode {
 		return $classes;
 	}
 
+	public static function add_toolbar_button( $wp_admin_bar ) {
+		if ( ! is_admin() ) {
+			return;
+		}
+
+		$is_dark = self::is_dark_mode_enabled();
+
+		$wp_admin_bar->add_node(
+			array(
+				'id'    => 'ats-dark-mode-toggle',
+				'title' => $is_dark ? '☀️ Light Mode' : '🌙 Dark Mode',
+				'href'  => '#',
+			)
+		);
+	}
+
 	public static function enqueue_assets( $hook ) {
 		wp_enqueue_style(
 			'ats-dark-mode',
 			ATS_PLUGIN_URL . 'assets/css/dark-mode.css',
 			array(),
 			ATS_VERSION
+		);
+
+		wp_enqueue_script(
+			'ats-dark-mode-toggle',
+			ATS_PLUGIN_URL . 'assets/js/dark-mode-toggle.js',
+			array(),
+			ATS_VERSION,
+			true
 		);
 	}
 }
