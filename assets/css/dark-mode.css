@@ -10,3 +10,94 @@ body.ats-dark .wrap {
 	background: #1e1e1e;
 	color: #e0e0e0;
 }
+
+body.ats-dark #wpbody-content h1,
+body.ats-dark #wpbody-content h2,
+body.ats-dark #wpbody-content h3,
+body.ats-dark #wpbody-content h4,
+body.ats-dark #wpbody-content p,
+body.ats-dark #wpbody-content label,
+body.ats-dark #wpbody-content th,
+body.ats-dark #wpbody-content td {
+	color: #e0e0e0;
+}
+
+body.ats-dark #wpbody-content a {
+	color: #66b3ff;
+}
+
+/* Postboxes / cards / meta boxes */
+body.ats-dark .postbox,
+body.ats-dark .stuffbox {
+	background: #2a2a2a;
+	border-color: #3a3a3a;
+}
+
+body.ats-dark .postbox .hndle,
+body.ats-dark .postbox h2.hndle,
+body.ats-dark .postbox-header {
+	background: #2a2a2a;
+	color: #e0e0e0;
+	border-color: #3a3a3a;
+}
+
+/* Buttons */
+body.ats-dark .button,
+body.ats-dark .button-secondary {
+	background: #3a3a3a;
+	border-color: #555;
+	color: #e0e0e0;
+}
+
+body.ats-dark .button-primary {
+	background: #2271b1;
+	border-color: #2271b1;
+	color: #fff;
+}
+
+/* Form fields */
+body.ats-dark input[type="text"],
+body.ats-dark input[type="search"],
+body.ats-dark input[type="email"],
+body.ats-dark input[type="url"],
+body.ats-dark input[type="password"],
+body.ats-dark input[type="number"],
+body.ats-dark textarea,
+body.ats-dark select {
+	background: #2a2a2a;
+	border-color: #555;
+	color: #e0e0e0;
+}
+
+/* Tables */
+body.ats-dark .wp-list-table {
+	background: #2a2a2a;
+	color: #e0e0e0;
+}
+
+body.ats-dark .wp-list-table th,
+body.ats-dark .wp-list-table td {
+	border-color: #3a3a3a;
+}
+
+body.ats-dark .wp-list-table tr:nth-child(odd) {
+	background: #262626;
+}
+
+body.ats-dark .wp-list-table tr:hover {
+	background: #333;
+}
+
+/* Notices */
+body.ats-dark .notice,
+body.ats-dark .updated,
+body.ats-dark .error {
+	background: #2a2a2a;
+	color: #e0e0e0;
+	border-left-color: #555;
+}
+
+/* Side menu submenu flyouts (the menu itself is already dark in WP core) */
+body.ats-dark #adminmenu .wp-submenu {
+	background: #1d2327;
+}
