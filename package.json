@@ -1,0 +1,12 @@
+{
+  "name": "admin-theme-switcher",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "sass assets/scss/admin-fonts.scss assets/css/admin-fonts.css --style=compressed --no-source-map && sass assets/scss/dark-mode.scss assets/css/dark-mode.css --style=compressed --no-source-map",
+    "watch": "sass --watch assets/scss/admin-fonts.scss:assets/css/admin-fonts.css assets/scss/dark-mode.scss:assets/css/dark-mode.css"
+  },
+  "devDependencies": {
+    "sass": "^1.89.2"
+  }
+}
