@@ -1,0 +1,78 @@
+name: Build & Release Theme
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Extract version from style.css
+        id: version
+        run: |
+          VERSION=$(grep -i "^Version:" style.css | awk '{print $2}')
+          if [ -z "$VERSION" ]; then
+            echo "Version not found in style.css"
+            exit 1
+          fi
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Set up Node (if needed)
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+        if: ${{ hashFiles('package.json') != '' }}
+
+      - name: Install dependencies
+        run: npm install
+        if: ${{ hashFiles('package.json') != '' }}
+
+      - name: Build assets
+        run: npm run build
+        if: ${{ hashFiles('package.json') != '' }}
+
+      - name: Create theme directory
+        run: |
+          mkdir -p build/admin-theme-switcher
+          rsync -av --exclude-from=.distignore ./ build/admin-theme-switcher/
+
+      - name: Create ZIP
+        run: |
+          cd build
+          zip -r ../admin-theme-switcher-${{ steps.version.outputs.version }}.zip admin-theme-switcher
+
+      - name: Generate changelog from commits
+        id: changelog
+        shell: bash
+        run: |
+          set -e
+
+          PREV_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          if [ -z "$PREV_TAG" ]; then
+            LOG=$(git log --pretty=format:"- %s")
+          else
+            LOG=$(git log "$PREV_TAG"..HEAD --pretty=format:"- %s")
+          fi
+
+          {
+            echo "changelog<<EOF"
+            echo "$LOG"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.version.outputs.version }}
+          name: admin-theme-switcher v${{ steps.version.outputs.version }}
+          body: ${{ steps.changelog.outputs.changelog }}
+          files: admin-theme-switcher-${{ steps.version.outputs.version }}.zip
