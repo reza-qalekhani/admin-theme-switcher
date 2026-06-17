@@ -13,6 +13,7 @@ class ATS_Dark_Mode {
 		add_filter( 'admin_body_class', array( __CLASS__, 'filter_admin_body_class' ) );
 		add_action( 'admin_bar_menu', array( __CLASS__, 'add_toolbar_button' ), 100 );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_assets' ) );
+		add_action( 'wp_ajax_ats_toggle_mode', array( __CLASS__, 'ajax_toggle_mode' ) );
 	}
 
 	public static function is_dark_mode_enabled( $user_id = 0 ) {
@@ -47,6 +48,20 @@ class ATS_Dark_Mode {
 		);
 	}
 
+	public static function ajax_toggle_mode() {
+		check_ajax_referer( self::NONCE_ACTION, 'nonce' );
+
+		if ( ! is_user_logged_in() ) {
+			wp_send_json_error( 'not_logged_in' );
+		}
+
+		$dark_mode = isset( $_POST['dark_mode'] ) && '1' === $_POST['dark_mode'] ? '1' : '0';
+
+		update_user_meta( get_current_user_id(), self::META_KEY, $dark_mode );
+
+		wp_send_json_success( array( 'dark_mode' => $dark_mode ) );
+	}
+
 	public static function enqueue_assets( $hook ) {
 		wp_enqueue_style(
 			'ats-dark-mode',
@@ -61,6 +76,14 @@ class ATS_Dark_Mode {
 			array(),
 			ATS_VERSION,
 			true
+		);
+
+		wp_localize_script(
+			'ats-dark-mode-toggle',
+			'atsDarkMode',
+			array(
+				'nonce' => wp_create_nonce( self::NONCE_ACTION ),
+			)
 		);
 	}
 }
