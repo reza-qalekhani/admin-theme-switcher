@@ -1,0 +1,32 @@
+# Version control
+
+.git/
+.github/
+.gitignore
+.distignore
+
+# Environment
+
+.env
+.env.\*
+\*.log
+src/
+node_modules/
+scripts/
+release/
+build/
+.vscode/
+.claude/
+
+# Docs
+
+README.md
+CLAUDE.md
+readme.txt
+
+# Other files
+
+assets/scss/
+languages/admin-theme-switcher.pot
+package-lock.json
+package.json

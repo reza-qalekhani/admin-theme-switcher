@@ -2,11 +2,9 @@
 
 # directories
 .git/
-.github/
 .vscode/
 .claude/
 node_modules/
 
 # files
-.distignore
 package-lock.json
