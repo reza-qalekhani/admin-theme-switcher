@@ -16,12 +16,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Extract version from style.css
+      - name: Extract version from admin-theme-switcher.php
         id: version
         run: |
-          VERSION=$(grep -i "^Version:" style.css | awk '{print $2}')
+          VERSION=$(grep -i "^Version:" admin-theme-switcher.php | awk '{print $2}')
           if [ -z "$VERSION" ]; then
-            echo "Version not found in style.css"
+            echo "Version not found in admin-theme-switcher.php"
             exit 1
           fi
           echo "version=$VERSION" >> $GITHUB_OUTPUT
