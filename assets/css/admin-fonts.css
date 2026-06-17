@@ -1,0 +1,46 @@
+/* Admin Theme Switcher - Font Family Options */
+
+@font-face {
+	font-family: 'ATS Font Option 1';
+	src: url('../fonts/font-option-1.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'ATS Font Option 2';
+	src: url('../fonts/font-option-2.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'ATS Font Option 3';
+	src: url('../fonts/font-option-3.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+body.ats-font-font1 #wpcontent,
+body.ats-font-font1 #adminmenu,
+body.ats-font-font1 #wpadminbar,
+body.ats-font-font1 .wrap {
+	font-family: 'ATS Font Option 1', sans-serif !important;
+}
+
+body.ats-font-font2 #wpcontent,
+body.ats-font-font2 #adminmenu,
+body.ats-font-font2 #wpadminbar,
+body.ats-font-font2 .wrap {
+	font-family: 'ATS Font Option 2', sans-serif !important;
+}
+
+body.ats-font-font3 #wpcontent,
+body.ats-font-font3 #adminmenu,
+body.ats-font-font3 #wpadminbar,
+body.ats-font-font3 .wrap {
+	font-family: 'ATS Font Option 3', sans-serif !important;
+}

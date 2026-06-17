@@ -18,6 +18,8 @@ class ATS_Font_Settings {
 	public static function init() {
 		add_action( 'admin_menu', array( __CLASS__, 'add_settings_page' ) );
 		add_action( 'admin_init', array( __CLASS__, 'register_settings' ) );
+		add_filter( 'admin_body_class', array( __CLASS__, 'filter_admin_body_class' ) );
+		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_assets' ) );
 	}
 
 	public static function add_settings_page() {
@@ -83,5 +85,24 @@ class ATS_Font_Settings {
 			</form>
 		</div>
 		<?php
+	}
+
+	public static function filter_admin_body_class( $classes ) {
+		$current = get_option( self::OPTION_KEY, 'default' );
+
+		if ( 'default' !== $current && array_key_exists( $current, self::FONT_LABELS ) ) {
+			$classes .= ' ats-font-' . sanitize_html_class( $current ) . ' ';
+		}
+
+		return $classes;
+	}
+
+	public static function enqueue_assets( $hook ) {
+		wp_enqueue_style(
+			'ats-admin-fonts',
+			ATS_PLUGIN_URL . 'assets/css/admin-fonts.css',
+			array(),
+			ATS_VERSION
+		);
 	}
 }
