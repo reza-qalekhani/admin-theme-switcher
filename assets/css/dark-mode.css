@@ -4,6 +4,28 @@ body.ats-dark {
 	background: #1e1e1e;
 }
 
+/* Admin bar and side menu - force dark regardless of the user's chosen WP color scheme */
+body.ats-dark #wpadminbar,
+body.ats-dark #wpadminbar .ab-item,
+body.ats-dark #wpadminbar a.ab-item {
+	background: #1d2327;
+	color: #e0e0e0;
+}
+
+body.ats-dark #adminmenu,
+body.ats-dark #adminmenuback,
+body.ats-dark #adminmenuwrap {
+	background: #1d2327;
+}
+
+body.ats-dark #adminmenu a {
+	color: #e0e0e0;
+}
+
+body.ats-dark #adminmenu .wp-submenu {
+	background: #1d2327;
+}
+
 body.ats-dark #wpcontent,
 body.ats-dark #wpbody-content,
 body.ats-dark .wrap {
@@ -97,7 +119,3 @@ body.ats-dark .error {
 	border-left-color: #555;
 }
 
-/* Side menu submenu flyouts (the menu itself is already dark in WP core) */
-body.ats-dark #adminmenu .wp-submenu {
-	background: #1d2327;
-}
