@@ -13,3 +13,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'ATS_VERSION', '1.0.0' );
 define( 'ATS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ATS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+
+require_once ATS_PLUGIN_DIR . 'includes/class-dark-mode.php';
+
+add_action(
+	'plugins_loaded',
+	function () {
+		ATS_Dark_Mode::init();
+	}
+);

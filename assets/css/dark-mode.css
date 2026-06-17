@@ -1,0 +1,12 @@
+/* Admin Theme Switcher - Dark Mode */
+
+body.ats-dark {
+	background: #1e1e1e;
+}
+
+body.ats-dark #wpcontent,
+body.ats-dark #wpbody-content,
+body.ats-dark .wrap {
+	background: #1e1e1e;
+	color: #e0e0e0;
+}
