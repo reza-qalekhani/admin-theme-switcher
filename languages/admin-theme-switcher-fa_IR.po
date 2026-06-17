@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Admin Theme Switcher\n"
-"POT-Creation-Date: 2026-06-17 16:22+0330\n"
-"PO-Revision-Date: 2026-06-17 16:22+0330\n"
+"POT-Creation-Date: 2026-06-17 16:29+0330\n"
+"PO-Revision-Date: 2026-06-17 16:30+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -58,8 +58,19 @@ msgstr "خانواده فونت"
 msgid "Admin Theme Switcher"
 msgstr "تغییر پوسته ادمین"
 
+#. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "https://byreza.net"
+msgstr "https://byreza.net"
+
 #. Description of the plugin/theme
 msgid ""
 "Adds a dark/light mode switcher and an admin font family selector to wp-"
 "admin."
 msgstr ""
+"دکمه سوییچ حالت روشن/تیره به نوار بالایی و تنظیمات فونت ناحیه ادمین به "
+"مدیریت وردپرس اضافه می‌شود."
+
+#. Author of the plugin/theme
+msgid "Reza Qalekhani"
+msgstr "رضا قلعه‌خانی"

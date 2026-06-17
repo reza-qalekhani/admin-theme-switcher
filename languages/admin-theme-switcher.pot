@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Admin Theme Switcher\n"
-"POT-Creation-Date: 2026-06-17 16:22+0330\n"
+"POT-Creation-Date: 2026-06-17 16:29+0330\n"
 "PO-Revision-Date: 2026-06-17 16:05+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -58,8 +58,17 @@ msgstr ""
 msgid "Admin Theme Switcher"
 msgstr ""
 
+#. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "https://byreza.net"
+msgstr ""
+
 #. Description of the plugin/theme
 msgid ""
 "Adds a dark/light mode switcher and an admin font family selector to wp-"
 "admin."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Reza Qalekhani"
 msgstr ""
