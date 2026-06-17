@@ -10,9 +10,36 @@ body.ats-dark {
 
   #wpadminbar,
   #wpadminbar .ab-item,
-  #wpadminbar a.ab-item {
+  #wpadminbar a.ab-item,
+  #screen-meta,
+  .theme-overlay .theme-wrap,
+  .wp-filter,
+  .theme-browser .theme .theme-name,
+  .theme-install-overlay .wp-full-overlay-sidebar,
+  .theme-install-overlay .wp-full-overlay-sidebar-content,
+  .admin-ui-page,
+  .dataviews-picker-wrapper,
+  .dataviews-wrapper,
+  #activity-widget #the-comment-list .comment-item {
     background: $dark-color-2;
     color: $light-color-1;
+  }
+
+  #wpcontent,
+  #wpbody-content,
+  .wrap {
+    background: $dark-color-1;
+    color: $light-color-1;
+  }
+
+  .dataviews-title-field,
+  .dataviews-title-field a,
+  #adminmenu a {
+    color: $light-color-1;
+  }
+
+  #adminmenu .wp-submenu {
+    background: $dark-color-1;
   }
 
   #adminmenu,
@@ -21,19 +48,10 @@ body.ats-dark {
     background: $dark-color-2;
   }
 
-  #adminmenu a {
-    color: $light-color-1;
-  }
-
-  #adminmenu .wp-submenu {
-    background: $dark-color-2;
-  }
-
-  #wpcontent,
-  #wpbody-content,
-  .wrap {
-    background: $dark-color-1;
-    color: $light-color-1;
+  .theme-overlay .theme-actions,
+  .expanded .wp-full-overlay-footer,
+  .admin-ui-page__header {
+    background: $dark-color-3;
   }
 
   #wpbody-content {
@@ -93,7 +111,8 @@ body.ats-dark {
     color: $light-color-1;
   }
 
-  .wp-list-table {
+  .wp-list-table,
+  .quicktags-toolbar {
     background: $dark-color-3;
     color: $light-color-1;
   }
@@ -154,7 +173,8 @@ body.ats-dark {
     border-color: $dark-color-4;
   }
 
-  .components-button {
+  .components-button,
+  .css-1xbmaa0 {
     color: $light-color-1;
   }
 
@@ -162,9 +182,26 @@ body.ats-dark {
   .components-select-control__input,
   .components-input-control__input,
   .components-search-control__input,
-  .components-textarea-control__input {
+  .components-textarea-control__input,
+  .interface-complementary-area-header {
     background: $dark-color-3;
     border-color: $dark-color-5;
+    color: $light-color-1;
+  }
+
+  .interface-complementary-area-header button,
+  .block-editor-block-styles__variants button.components-button.block-editor-block-styles__item,
+  .components-color-palette__custom-color-name {
+    color: $light-color-1;
+  }
+
+  .block-editor-block-icon.has-colors svg {
+    fill: $light-color-1;
+  }
+
+  .block-editor-tabbed-sidebar,
+  .block-editor-inserter__category-panel {
+    background: $dark-color-3;
     color: $light-color-1;
   }
 
