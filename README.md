@@ -225,7 +225,7 @@ npm run watch
 
 ### Version Management
 
-Current version: **1.2**
+Current version: **1.1**
 
 Plugin files to update for new releases:
 
