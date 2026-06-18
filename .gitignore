@@ -1,11 +1,11 @@
-.DS_Store
-
 # directories
 .git/
 .vscode/
-.claude/
 node_modules/
+docs/
+vendor/
 
 # files
 package-lock.json
 *.map
+.DS_Store

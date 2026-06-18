@@ -17,10 +17,10 @@ release/
 build/
 .vscode/
 .claude/
+vendor/
 
 # Docs
 
-README.md
 CLAUDE.md
 readme.txt
 
