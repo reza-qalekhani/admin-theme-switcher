@@ -1,279 +1,300 @@
-# 🎨 Admin Theme Switcher
+# Admin Theme Switcher 🚀
 
-> Enhance your WordPress admin experience with dark mode and custom fonts
+A lightweight WordPress plugin that adds a dark/light mode switcher and customizable admin font family selector to the WordPress admin dashboard.
 
-[![Version](https://img.shields.io/badge/version-1.1-blue.svg)](https://github.com/rezaqalekhani/admin-theme-switcher)
-[![License](https://img.shields.io/badge/license-GPL--2.0-green.svg)](#license)
-[![WordPress Compatible](https://img.shields.io/badge/WordPress-6.0%2B-blue.svg)](https://wordpress.org)
+## 📝 Description
+
+Admin Theme Switcher enhances the WordPress admin experience with two key features:
+
+1. **Dark Mode Toggle** — A quick-access button in the admin bar to switch between light and dark themes. User preference is saved per user.
+2. **Admin Font Selector** — A settings page to choose from multiple font families for the admin interface, including support for Persian fonts like Vazirmatn, IranSansX, and IranYekan.
 
 ## ✨ Features
 
-- 🌙 **Dark Mode Toggle** - Switch between light and dark themes with one click
-- ☀️ **Light Mode** - Eye-friendly light theme for comfortable daytime work
-- 🔤 **Custom Font Support** - Choose from multiple font families including:
-  - Default System Font
-  - Vazirmatn (Persian)
-  - IranSansX (Persian)
-  - IranYekan (Persian)
-- 🎛️ **Settings Panel** - Easy-to-use admin settings page
-- 🌍 **Multi-language Support** - Built-in Farsi (Persian) localization
-- ⚡ **Lightweight** - Minimal performance impact
-- 🔐 **Per-User Settings** - Each admin user has their own preferences
+### Dark Mode Toggle
 
-## 📦 Installation
+- **Admin Bar Button** — Quick toggle in the admin bar (displays ☀️ or 🌙 based on current mode)
+- **AJAX-Based** — Instant switching without page reload
+- **Per-User Preference** — Each user's preference is stored independently
+- **Block Editor Support** — Styles apply to both classic admin and block editor iframe
+- **Nonce Protected** — AJAX requests are secured with WordPress nonce verification
 
-1. **Download the plugin** or clone the repository:
+### Font Settings
 
+- **Settings Page** — Dedicated settings page under **Settings → Admin Appearance**
+- **Multiple Font Options** — Choose from Default, Vazirmatn, IranSansX, or IranYekan
+- **Admin-Only** — Requires `manage_options` capability
+- **Persistent Storage** — Font choice is saved as a WordPress option
+- **Block Editor Support** — Custom fonts apply to the block editor canvas
+- **Font Fallback** — Missing font files safely fall back to sans-serif
+
+## 💻 Requirements
+
+- **PHP:** 7.0 or higher
+- **WordPress:** 5.0 or higher
+
+## 🛠️ Installation
+
+1. Download the plugin files
+2. Upload the `admin-theme-switcher` folder to `/wp-content/plugins/` directory
+3. Activate the plugin through the 'Plugins' menu in WordPress
+4. Navigate to **Settings → Admin Appearance** to configure custom font families
+
+## ⚙️ Configuration
+
+### 1. Dark Mode
+
+Dark mode settings are stored per user in user meta (`ats_dark_mode`). No configuration required — users can toggle in the admin bar.
+
+### 2. Font Selection
+
+1. Go to **Settings → Admin Appearance** in the WordPress admin
+2. Select your preferred font family
+3. Click **Save Changes**
+
+### 3. Adding Custom Fonts
+
+To use custom fonts instead of the defaults:
+
+1. **Add font files** to `assets/fonts/` with these filenames:
+   - `font-option-1.woff2` — Used by "Font Option 1"
+   - `font-option-2.woff2` — Used by "Font Option 2"
+   - `font-option-3.woff2` — Used by "Font Option 3"
+
+2. **Update font labels** in `includes/class-font-settings.php`:
+
+   ```php
+   public static function get_font_labels() {
+       return array(
+           'default'   => __('Default', 'admin-theme-switcher'),
+           'customfont' => __('My Custom Font', 'admin-theme-switcher'),
+           // ...
+       );
+   }
+   ```
+
+3. **Update SCSS** in `assets/scss/admin-fonts.scss`:
+
+   ```scss
+   @font-face {
+     font-family: "CustomFont";
+     src: url("../fonts/font-option-1.woff2") format("woff2");
+   }
+
+   .ats-font-customfont {
+     --wp-admin-font: "CustomFont", sans-serif;
+   }
+   ```
+
+4. **Rebuild CSS:**
    ```bash
-   git clone https://github.com/rezaqalekhani/admin-theme-switcher.git admin-theme-switcher
+   npm run build
    ```
 
-2. **Place in WordPress plugins directory:**
+## 🚀 Usage
 
-   ```
-   /wp-content/plugins/admin-theme-switcher/
-   ```
+### Using Dark Mode Toggle
 
-3. **Activate the plugin** from WordPress admin panel
+1. Look for the dark/light mode icon (☀️ or 🌙) in the WordPress admin bar
+2. Click to toggle between dark and light modes
+3. Your preference is automatically saved to your user profile
+4. Styles apply immediately without page reload
 
-4. **Visit Settings → Admin Appearance** to configure
+### Using Font Selector
 
-## 🚀 Quick Start
+1. Navigate to **Settings → Admin Appearance**
+2. Select your preferred font family from the radio buttons
+3. Click **Save Changes**
+4. The font applies to all admin pages for all users (global setting)
 
-### For Users
+### Using Custom Fonts
 
-- Look for the **🌙 Dark Mode** / **☀️ Light Mode** toggle in the WordPress admin toolbar
-- Click to switch themes instantly
-- Visit **Settings → Admin Appearance** to select your preferred font family
-
-### For Developers
-
-#### Build Assets
-
-```bash
-npm install
-npm run build
-```
-
-#### Watch for Changes
-
-```bash
-npm run watch
-```
+1. Place font files in `assets/fonts/` folder
+2. Update font options in `includes/class-font-settings.php`
+3. Update CSS classes in `assets/scss/admin-fonts.scss`
+4. Run `npm run build` to compile SCSS
+5. Clear cache and refresh to see changes
 
 ## 📁 Project Structure
 
 ```
 admin-theme-switcher/
+├── admin-theme-switcher.php      # Main plugin file with hooks
+├── uninstall.php                 # Cleanup on plugin uninstallation
+├── package.json                  # Build dependencies (Node.js/SASS)
 ├── assets/
-│   ├── css/                    # Compiled CSS files
-│   │   ├── admin-fonts.css
-│   │   └── dark-mode.css
-│   ├── fonts/                  # Custom fonts (Persian)
-│   │   ├── Vazirmatn.woff2
-│   │   ├── IranSansX.woff2
-│   │   └── IranYekan.woff2
+│   ├── css/                      # Compiled CSS files
+│   │   ├── dark-mode.css        # Dark mode styles
+│   │   └── admin-fonts.css      # Font styles
 │   ├── js/
-│   │   └── dark-mode-toggle.js # Toggle functionality
-│   └── scss/                   # Source SCSS files
-│       ├── admin-fonts.scss
-│       └── dark-mode.scss
+│   │   └── dark-mode-toggle.js  # AJAX toggle handler
+│   ├── scss/                     # Source SCSS files
+│   │   ├── dark-mode.scss       # Dark mode SCSS
+│   │   └── admin-fonts.scss     # Font SCSS
+│   └── fonts/                    # Font files (WOFF2 format)
 ├── includes/
-│   ├── class-dark-mode.php     # Dark mode functionality
-│   └── class-font-settings.php # Font selector logic
-├── languages/
-│   ├── admin-theme-switcher.pot          # Translation template
-│   └── admin-theme-switcher-fa_IR.po     # Farsi translation
-├── .github/
-│   └── workflows/
-│       └── release.yml         # Automated release workflow
-├── admin-theme-switcher.php    # Main plugin file
-├── uninstall.php               # Cleanup on uninstall
-├── package.json                # Node dependencies
-└── README.md                   # This file
+│   ├── class-dark-mode.php      # Dark mode toggle functionality
+│   └── class-font-settings.php  # Font settings page & logic
+├── languages/                    # Internationalization
+│   ├── admin-theme-switcher.pot # Translatable strings template
+│   └── admin-theme-switcher-fa_IR.po # Farsi translation
+└── README.md                     # This file
 ```
 
-## 🛠️ Core Classes
+## 🌍 Internationalization
 
-### `ATS_Dark_Mode`
+The plugin is fully internationalized with:
 
-Manages the dark/light mode functionality:
+- Text domain: `admin-theme-switcher`
+- Language files location: `/languages/`
+- Currently supported: English, Persian (Farsi)
 
-- Adds toolbar toggle button
-- Manages user preferences via meta keys
-- Enqueues styles and scripts
-- Handles AJAX toggle requests
+### Translation Files
 
-**Key Methods:**
+- `admin-theme-switcher.pot` — Translation template for translators
+- `admin-theme-switcher-fa_IR.po` — Persian source translations
+- `admin-theme-switcher-fa_IR.mo` — Persian compiled translations
 
-- `init()` - Initialize hooks
-- `is_dark_mode_enabled($user_id)` - Check user's theme preference
-- `ajax_toggle_mode()` - Handle theme switching
+To add new language support, create a `.po` file in the `/languages/` directory following WordPress translation conventions.
 
-### `ATS_Font_Settings`
+## 🧪 Development
 
-Handles custom font selection:
+### Building Assets
 
-- Adds admin settings page under Settings → Admin Appearance
-- Manages font family preferences
-- Supports Persian font families
-- Enqueues font assets globally
-
-**Key Methods:**
-
-- `init()` - Initialize hooks
-- `get_font_labels()` - Get available fonts
-- `register_settings()` - Register WordPress settings
-- `sanitize_font_choice()` - Validate font selection
-
-## 📝 Configuration
-
-### Available Font Families
-
-```php
-[
-  'default'   => 'Default',
-  'vazirmatn' => 'Vazirmatn',
-  'iransansx' => 'IranSansX',
-  'iranyekan' => 'IranYekan',
-]
-```
-
-### Theme Classes
-
-The plugin adds CSS classes to adjust styling:
-
-- `.ats-dark` - Applied when dark mode is enabled
-- `.ats-font-{family}` - Applied based on selected font
-
-## 🌍 Localization
-
-The plugin supports multiple languages through WordPress translation system:
-
-- **Text Domain:** `admin-theme-switcher`
-- **Language Files:** `/languages/`
-- **Currently Supported:**
-  - English (en_US)
-  - Persian/Farsi (fa_IR)
-
-To contribute translations:
-
-1. Extract strings: Use WordPress translation tools
-2. Translate `.pot` file to your language
-3. Submit as `.mo` and `.po` files
-
-## 🔧 Development
-
-### Requirements
-
-- PHP 7.2+
-- WordPress 6.0+
-- Node.js 18+ (for building assets)
-
-### Setup Development Environment
+Install dependencies:
 
 ```bash
-# Install dependencies
 npm install
+```
 
-# Watch SCSS files for changes
-npm run watch
+Build minified CSS from SCSS:
 
-# Build for production
+```bash
 npm run build
 ```
 
-### Build Workflow
-
-The project uses GitHub Actions for automated releases:
-
-- Extracts version from plugin header
-- Builds assets with npm
-- Creates deployment ZIP file
-- Generates changelog from git commits
-
-## 📦 Release Process
-
-Releases are automated via GitHub Actions workflow:
-
-1. **Trigger:** Manual workflow dispatch
-2. **Extract Version:** From plugin header comment
-3. **Build Assets:** Compile SCSS to CSS
-4. **Create ZIP:** Package plugin for distribution
-5. **Generate Changelog:** From recent commits
-6. **Create Release:** Push to GitHub Releases
+Watch for changes during development:
 
 ```bash
-# Manual release (if using CLI)
-git tag v1.1
-git push origin v1.1
+npm run watch
+```
+
+### Technologies Used
+
+- **PHP 7.0+** — Plugin core logic
+- **JavaScript (Vanilla)** — Dark mode AJAX toggle
+- **SCSS** — Stylesheets (compiled to CSS)
+- **Node.js + SASS** — Build process
+
+### Code Architecture
+
+**Main Plugin File** (`admin-theme-switcher.php`):
+
+- Defines plugin constants and version
+- Loads text domain for translations
+- Initializes the two main classes
+
+**Dark Mode Class** (`includes/class-dark-mode.php`):
+
+- Manages dark mode user preference (stored in user meta)
+- Adds admin bar toggle button
+- Handles AJAX requests for toggling
+- Enqueues dark mode styles and JavaScript
+
+**Font Settings Class** (`includes/class-font-settings.php`):
+
+- Registers a settings page under Settings menu
+- Handles font selection radio buttons
+- Stores font preference as WordPress option
+- Applies font class to admin body element
+
+### Hooks & Filters
+
+| Hook                      | Used For                                 |
+| ------------------------- | ---------------------------------------- |
+| `init`                    | Load text domain for translations        |
+| `admin_bar_menu`          | Add dark mode toggle button              |
+| `admin_enqueue_scripts`   | Load CSS/JS on admin pages               |
+| `enqueue_block_assets`    | Load styles in block editor iframe       |
+| `admin_body_class`        | Apply CSS classes for dark mode and font |
+| `wp_ajax_ats_toggle_mode` | Handle AJAX toggle requests              |
+| `admin_menu`              | Register font settings page              |
+| `admin_init`              | Register font settings                   |
+
+## 🚀 Build & Release
+
+### Version Management
+
+Current version: **1.2**
+
+Plugin files to update for new releases:
+
+1. `admin-theme-switcher.php` — Update version in plugin header and constants
+2. Create/update changelog in documentation
+
+### Release Process
+
+1. Update version number in `admin-theme-switcher.php`
+2. Test all features thoroughly
+3. Update documentation if needed
+4. Commit changes with version tag
+
+### Manual Build for Distribution
+
+```bash
+npm install
+npm run build
+# Create plugin directory and build ZIP
+mkdir -p build/admin-theme-switcher
+rsync -av --exclude-from=.distignore ./ build/admin-theme-switcher/
+cd build && zip -r admin-theme-switcher.zip admin-theme-switcher/
 ```
 
 ## 🐛 Troubleshooting
 
-### Dark mode not applying?
+### Dark Mode Toggle Not Appearing
 
-- Clear browser cache
-- Verify user meta is being saved: Check `wp_usermeta` table for `ats_dark_mode` key
-- Check browser console for JavaScript errors
+- Ensure the plugin is activated
+- Check that you're logged in as a user
+- Look in the admin bar (top-left area)
 
-### Font not changing?
+### Custom Fonts Not Loading
 
-- Ensure browser supports WOFF2 format
-- Verify font files are in `/assets/fonts/`
-- Check if the selected font is properly registered in settings
+- Verify font files are in `assets/fonts/` with correct filenames
+- Check browser console for CORS or 404 errors
+- Rebuild CSS: `npm run build`
+- Clear browser cache and WordPress object cache
 
-### Settings page not appearing?
+### Styles Not Applying
 
-- Verify user has `manage_options` capability
-- Check plugin activation status
-- Look for PHP errors in debug.log
+- Clear the WordPress plugin cache
+- Rebuild CSS assets: `npm run build`
+- Check that `admin-theme-switcher.php` version constant matches compiled files
 
-## 📄 License
+## 🤝 Contributing
 
-This plugin is licensed under the **GNU General Public License v2.0** or later.
+Contributions are welcome! When contributing:
 
-```
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
-```
+1. Follow WordPress coding standards
+2. Test your changes thoroughly
+3. Ensure internationalization compatibility
+4. Document new features
 
-See the full license text at: https://www.gnu.org/licenses/gpl-2.0.html
+## 📜 License
+
+This plugin is open-source and free to use, modify, and distribute.
 
 ## 👨‍💻 Author
 
 **Reza Qalekhani**
 
-- Website: https://byreza.net
-- GitHub: [@reza-qalekhani](https://github.com/reza-qalekhani)
+- Website: [byreza.net](https://byreza.net)
+- Channel: [@byreza_net](https://t.me/byreza_net)
+- Telegram ID: [@reza_qalekhani](https://t.me/@reza_qalekhani)
 
-### Code Standards
+### ❤️ Show Your Support
 
-- Follow WordPress coding standards
-- Use SCSS for styles
-- Keep JavaScript vanilla (no jQuery dependency)
-- Ensure accessibility (WCAG 2.1 AA)
-
-## 🗺️ Roadmap
-
-- [ ] Support for more font families
-- [ ] Custom color scheme editor
-- [ ] Plugin settings export/import
-- [ ] Admin interface theme customization
-
-## 📞 Support
-
-For issues, feature requests, or questions:
-
-- **GitHub Issues:** https://github.com/reza-qalekhani/admin-theme-switcher/issues
-- **Website:** https://byreza.net
-- **Telegram Channel** https://t.me/byreza_net
-
-## ❤️ Show Your Support
-
-If you find this plugin useful, please:
+If you find this project useful, please:
 
 - ⭐ Give it a star on GitHub
 - 🔗 Share it with your network
@@ -284,4 +305,4 @@ If you find this plugin useful, please:
 
 **Made with ❤️ by Reza Qalekhani**
 
-Last Updated: June 17, 2026
+Last Updated: 2026-06-18
