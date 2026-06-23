@@ -26,20 +26,6 @@ jobs:
           fi
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
-      - name: Set up Node (if needed)
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-        if: ${{ hashFiles('package.json') != '' }}
-
-      - name: Install dependencies
-        run: npm install
-        if: ${{ hashFiles('package.json') != '' }}
-
-      - name: Build assets
-        run: npm run build
-        if: ${{ hashFiles('package.json') != '' }}
-
       - name: Create plugin directory
         run: |
           mkdir -p build/admin-theme-switcher
